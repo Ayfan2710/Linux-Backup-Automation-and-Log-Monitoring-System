@@ -1,0 +1,7 @@
+Disk Usage Report - Saturday 28 February 2026 03:17:02 PM IST
+---------------------------------
+/ usage is 16% - OK
+/boot usage is 50% - OK
+/projects usage is 1% - OK
+/boot/efi usage is 2% - OK
+WARNING: /run/media/root/RHEL-9-6-0-BaseOS-x86_64 is at 100% usage
