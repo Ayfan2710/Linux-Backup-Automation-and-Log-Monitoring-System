@@ -1,69 +1,75 @@
 # Linux Backup Automation and Log Monitoring System
 
 ## Overview
-This project implements an automated Linux backup and monitoring solution using Bash scripting, cron scheduling, and rsync over SSH. The system ensures secure data backups, log monitoring, and remote synchronization with restore validation.
+A production-style Linux automation project built on a RHEL-based system.  
+This solution implements secure backup automation, log monitoring, remote synchronization, disk health checks, alert simulation, and LVM-backed storage.
 
 ---
 
-## Project Architecture
+## Key Features
 
-1. Local Backup System
-   - Uses tar for compressed backups.
-   - Stores backups in local backup directory.
-   - Logs backup operations with timestamps.
+### Backup Automation
+- Compressed backups using tar
+- Cron-based scheduling
+- Logging and failure detection
 
-2. SSH Log Monitoring
-   - Parses /var/log/secure.
-   - Detects failed SSH login attempts.
-   - Generates daily monitoring reports.
+### SSH Log Monitoring
+- Detection of failed SSH login attempts
+- Daily monitoring reports
 
-3. Remote Synchronization
-   - Uses rsync over SSH.
-   - Implements SSH key-based authentication.
-   - Syncs backups to remote storage directory.
-   - Includes error handling and logging.
+### Remote Synchronization
+- Rsync over SSH
+- Key-based authentication
+- Automated remote backup validation
 
-4. Automation
-   - Cron-based scheduling.
-   - Separate scheduling for backup, monitoring, and sync.
+### Disk Usage Monitoring
+- Threshold-based disk checks
+- Automated alert triggering
+
+### Alert System
+- Centralized alert logging
+- Backup and disk failure notifications
+
+### LVM Storage Integration
+- Dedicated logical volume for backups
+- Persistent mount configuration
+- Scalable storage management
 
 ---
 
 ## Automation Schedule
 
-| Time     | Task                     |
-|----------|--------------------------|
-| 02:00 AM | Local Backup             |
-| 02:30 AM | SSH Log Monitoring       |
-| 03:00 AM | Remote Rsync Sync        |
-
----
-
-## Security Features
-- SSH key-based authentication
-- Restricted remote synchronization
-- Controlled file permissions
-- Secure log monitoring
-
----
-
-## Restore Validation
-Backups are tested by extracting archive files into a temporary restore directory to validate integrity.
+| Time | Task |
+|------|------|
+| 02:00 AM | Local Backup |
+| 02:30 AM | SSH Log Monitoring |
+| 03:00 AM | Remote Sync |
+| 03:30 AM | Disk Monitoring |
 
 ---
 
 ## Technologies Used
+- Linux (RHEL-based)
 - Bash
 - Cron
 - tar
 - rsync
 - SSH
-- Linux (RHEL-based system)
+- LVM
 
 ---
 
-## Future Enhancements
-- Disk usage monitoring
-- Email alert simulation
-- LVM-backed storage
-- Failure notification system
+## Project Structure
+
+Linux-Backup-Automation-and-Log-Monitoring-System/
+│
+├── scripts/
+│   ├── local_backup.sh
+│   ├── ssh_monitor.sh
+│   ├── remote_backup.sh
+│   ├── disk_monitor.sh
+│   └── alert.sh
+│
+├── logs/        (ignored in git)
+├── backups/     (ignored in git)
+└── README.md
