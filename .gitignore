@@ -1,0 +1,7 @@
+# Ignore runtime data
+backups/
+logs/
+*.log
+
+# Ignore LVM disk image
+lvm_disk.img

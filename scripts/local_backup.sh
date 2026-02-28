@@ -1,11 +1,21 @@
 #!/bin/bash
 
+PROJECT_DIR="/root/Linux-Backup-Automation-and-Log-Monitoring-System"
 SOURCE="/home"
-DEST="$(pwd)/backups"
+DEST="/backup_storage"
+LOGFILE="$PROJECT_DIR/logs/local_backup_$(date +%F).log"
 DATE=$(date +%F)
 
-mkdir -p $DEST
+mkdir -p "$DEST"
+mkdir -p "$PROJECT_DIR/logs"
 
-tar -czf $DEST/home-backup-$DATE.tar.gz $SOURCE 2>/dev/null
+echo "Backup started at $(date)" > "$LOGFILE"
 
-echo "Backup completed on $DATE"
+tar -czf "$DEST/home-backup-$DATE.tar.gz" "$SOURCE" >> "$LOGFILE" 2>&1
+
+if [ $? -eq 0 ]; then
+    echo "Backup completed successfully at $(date)" >> "$LOGFILE"
+else
+    echo "Backup FAILED at $(date)" >> "$LOGFILE"
+    "$PROJECT_DIR/scripts/alert.sh" "Local backup failed on $(date)"
+fi
